@@ -1,0 +1,20 @@
+{
+  "name": "@bot/server-entrypoint",
+  "version": "0.0.1",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "yarn service build",
+    "dev": "yarn service dev",
+    "prepack": "run build",
+    "start": "yarn node dist/index.js"
+  },
+  "devDependencies": {
+    "@bot/config": "workspace:0.0.1",
+    "@bot/debug": "workspace:0.0.1",
+    "@bot/init-bot": "workspace:0.0.1",
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4"
+  }
+}

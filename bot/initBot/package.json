@@ -1,0 +1,13 @@
+{
+  "name": "@bot/init-bot",
+  "version": "0.0.1",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@bot/debug": "workspace:0.0.1",
+    "@bot/render-file": "workspace:0.0.1",
+    "express": "^4.13.4",
+    "node-telegram-bot-api": "^0.21.1"
+  }
+}

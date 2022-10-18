@@ -1,0 +1,5 @@
+<% console.log(comment) %>
+<b>💬 New comment on <a href="<%= comment.self %>"><%= issue.key %></a></b>
+by <a href="<%= comment.author.self %>"><%= comment.author.displayName %></a>
+
+<%= comment.body %>

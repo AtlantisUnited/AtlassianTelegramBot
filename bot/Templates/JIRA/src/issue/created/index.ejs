@@ -1,0 +1,19 @@
+<%
+var browseURL = "https://jira.ceki.ru/browse/";
+var component = (
+        issue.fields.components && issue.fields.components.length && _.map(issue.fields.components, function (item) {
+            return item.name;
+        }) || [':( empty']
+);
+%>
+<b>🐛 New issue </b><a href="https://jira.ceki.ru/browse/<%= issue.key %>"><%=issue.key %></a>
+by <a href="<%= issue.fields.creator && issue.fields.creator.self  %>"><%= issue.fields.creator && issue.fields.creator.displayName || 'Unknown' %></a>
+
+<b>Project: <a href="<%= browseURL %> <%= issue.fields.project.key %>"><%= issue.fields.project.name %></a></b>
+<b>Type: </b><%= issue.fields.issuetype && issue.fields.issuetype.name || '' %>
+<b>Summary: </b><%= issue.fields.summary %>
+<b>Components: </b><%= component.join(', ') %>
+<b>Description: </b><%= issue.fields.description %>
+-
+<b>Assignee: </b> <a href="<%= issue.fields.assignee && issue.fields.assignee.self  %>"><%= issue.fields.assignee && issue.fields.assignee.displayName || 'None' %></a>
+<b>Priority: </b><%= issue.fields.priority && issue.fields.priority.name || 'None' %>

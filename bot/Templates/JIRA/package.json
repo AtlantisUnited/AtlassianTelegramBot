@@ -1,0 +1,12 @@
+{
+  "name": "@bot/jira-templates",
+  "version": "0.0.1",
+  "private": true,
+  "license": "BSD-3-Clause",
+  "main": "src/index.js",
+  "dependencies": {
+    "@bot/debug": "workspace:0.0.1",
+    "fs-promise": "^0.5.0",
+    "lodash": "^4.13.1"
+  }
+}
