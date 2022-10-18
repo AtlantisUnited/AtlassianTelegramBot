@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  yarn:
+    image: node:16
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: yarn
+
+  server-entrypoint:
+    image: node:16
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    entrypoint: yarn workspace @bot/server-entrypoint dev
+    networks:
+      - default
+    restart: always
+    ports:
+      - 7777:7777
