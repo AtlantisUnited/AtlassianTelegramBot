@@ -42,6 +42,10 @@ export default (config) => {
         templatePath = path.join(templatesPath, 'issue', 'created', 'index.ejs')
         log('Event jira:issue_created:', JSON.stringify(request.body))
         break
+      case 'comment_created':
+        templatePath = path.join(templatesPath, 'comment', 'created', 'index.ejs')
+        log('Event jira:issue_created:', JSON.stringify(request.body))
+        break
       case 'jira:issue_updated':
         log('Event jira:issue_updated:', JSON.stringify(request.body))
         break
