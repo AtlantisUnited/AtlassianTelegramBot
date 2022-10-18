@@ -10,7 +10,7 @@
     "prepack": "run build",
     "start": "yarn node dist/index.js"
   },
-  "dependencies": {
+  "devDependencies": {
     "@bot/config": "workspace:0.0.1",
     "@bot/debug": "workspace:0.0.1",
     "@bot/init-bot": "workspace:0.0.1",
