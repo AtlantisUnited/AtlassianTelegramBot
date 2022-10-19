@@ -1,19 +1,30 @@
 <%
-var browseURL = "https://jira.ceki.ru/browse/";
+const extractDomain = (dom) => {
+  const protocol = `${dom.split('//')[0]}//`
+  const withoutProtocol = dom.split('//')[1]
+
+  return `${protocol}${withoutProtocol.split('/')[0]}`
+}
 var component = (
         issue.fields.components && issue.fields.components.length && _.map(issue.fields.components, function (item) {
             return item.name;
-        }) || [':( empty']
+        }) || ['None']
 );
+var links = changelog.items.filter(cl => cl.field === 'Link')
+var domain = extractDomain(issue.self)
 %>
-<b>🐛 New issue </b><a href="https://jira.ceki.ru/browse/<%= issue.key %>"><%=issue.key %></a>
+<b>🐛 New issue </b><a href="<%= domain %>/browse/<%= issue.key %> %>"><%=issue.key %></a>
 by <a href="<%= issue.fields.creator && issue.fields.creator.self  %>"><%= issue.fields.creator && issue.fields.creator.displayName || 'Unknown' %></a>
 
-<b>Project: <a href="<%= browseURL %> <%= issue.fields.project.key %>"><%= issue.fields.project.name %></a></b>
+<b>Project: <a href="<%= domain %>/projects/<%= issue.fields.project.key %>"><%= issue.fields.project.name %></a></b>
 <b>Type: </b><%= issue.fields.issuetype && issue.fields.issuetype.name || '' %>
 <b>Summary: </b><%= issue.fields.summary %>
 <b>Components: </b><%= component.join(', ') %>
-<b>Description: </b><%= issue.fields.description %>
+<b>Description: </b>
+<%= issue.fields.description || 'None' %>
 -
 <b>Assignee: </b> <a href="<%= issue.fields.assignee && issue.fields.assignee.self  %>"><%= issue.fields.assignee && issue.fields.assignee.displayName || 'None' %></a>
 <b>Priority: </b><%= issue.fields.priority && issue.fields.priority.name || 'None' %>
+<b>Parent: </b><%= issue.fields.parent ? `<a href="${domain}/browse/${issue.fields.parent.key}">${issue.fields.parent.key}</a>` : 'None' %>
+<b>Links: </b>
+<%= links.map(link => `${link.toString} (<a href="${domain}/browse/${link.to}">${link.to}</a>)`).join('\n') || 'None' %>
